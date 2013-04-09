@@ -3,7 +3,7 @@
 require_relative 'preferences_data'
 require_relative 'similarity_helper'
 
-def recommend_items_knn(preferences, get_similarity, user, num_neighbours)
+def knn_recommend(preferences, get_similarity, user, num_neighbours)
   total = Hash.new { |h, k| h[k] = 0 }
   others_with_score = get_neighbours(preferences, get_similarity, user, num_neighbours)
   others_with_score.each do |_, items, score|
@@ -24,5 +24,5 @@ def get_neighbours(user_prefs, get_similarity, user, num_neighbours)
 end
 
 [:user1, :user2, :user3].each do |user|
-  puts recommend_items_knn(BOOLEAN_USER_PREFERENCES, method(:jaccard_similarity), user, 1).inspect
+  puts knn_recommend(BOOLEAN_USER_PREFERENCES, method(:jaccard_similarity), user, 1).inspect
 end

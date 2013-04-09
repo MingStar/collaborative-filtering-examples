@@ -3,7 +3,7 @@
 require_relative 'preferences_data'
 require_relative 'similarity_helper'
 
-def recommend_items(preferences, get_similarity, user)
+def recommend(preferences, get_similarity, user)
   # initialise
   totals = Hash.new { |h, k| h[k] = 0 }
   sum_weights = Hash.new { |h, k| h[k] = 0 }
@@ -25,5 +25,5 @@ def recommend_items(preferences, get_similarity, user)
 end
 
 [:user1, :user2, :user3].each do |user|
-  puts recommend_items(USER_PREFERENCES, method(:pearson_similarity), user).inspect
+  puts recommend(USER_PREFERENCES, method(:pearson_similarity), user).inspect
 end
