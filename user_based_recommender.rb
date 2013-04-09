@@ -7,7 +7,7 @@ def recommend(preferences, get_similarity, user)
   # initialise
   totals = Hash.new { |h, k| h[k] = 0 }
   sum_weights = Hash.new { |h, k| h[k] = 0 }
-  # for each other user
+  # calculate scores
   preferences.each do |other, items|
     next if user == other # skip the user
     score = get_similarity.call(preferences, user, other)

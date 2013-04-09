@@ -17,7 +17,7 @@ end
 
 def get_neighbours(user_prefs, get_similarity, user, num_neighbours)
   rankings = user_prefs.map do |other, items|
-    score = user == other ? 0 : get_similarity.call(user_prefs, user, other)
+    score = user == other ? Float.MIN: get_similarity.call(user_prefs, user, other)
     [other, items, score]
   end
   rankings.sort_by { |_, _, score| -score }[0..num_neighbours-1]
