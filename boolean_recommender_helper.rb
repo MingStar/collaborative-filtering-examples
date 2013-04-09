@@ -6,7 +6,7 @@ def recommend(preferences, get_similarity, user)
     next if user == other # skip the user
     score = get_similarity.call(preferences, user, other)
     items.each do |item|
-      # only score items that the user haven't touched
+      # only score items that the user hasn't touched
       next if preferences[user].include?(item)
       totals[item] += score
     end
